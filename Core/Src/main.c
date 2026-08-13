@@ -797,7 +797,7 @@ void System_Run_Cycle(void) {
         state_timer_start = 0;
     }
 
-    //logika state mesin
+    //logika state mesin 
         switch (CurrentState) {
             case STATE_EMERGENCY_STOP:
                 stop_all_actuators();
