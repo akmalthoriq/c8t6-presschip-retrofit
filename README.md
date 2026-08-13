@@ -73,11 +73,11 @@ Firmware kontrol berbasis mikrokontroler **STM32F103** untuk mengendalikan **Mes
 | **Selector Switch 2** | `PC14` | GPIO Input | Pull-Up | Bit-2 Pemilih Siklus Otomatis |
 | **Btn Auger Mundur**| `PA9` | GPIO Input | Pull-Up | Tombol manual pemutar auger mundur |
 | **Btn Auger Maju** | `PA10` | GPIO Input | Pull-Up | Tombol manual pemutar auger maju |
-| **Btn Horiz Mundur**| `PB3` | GPIO Input | Pull-Up | Tombol manual pembuka pintu horizontal |
-| **Btn Horiz Maju** | `PB4` | GPIO Input | Pull-Up | Tombol manual penutup pintu horizontal |
-| **Btn Vert Turun** | `PB5` | GPIO Input | Pull-Up | Tombol manual silinder vertikal turun |
-| **Btn Vert Naik** | `PB6` | GPIO Input | Pull-Up | Tombol manual silinder vertikal naik |
-| **Btn Auto Cycle** | `PB7` | GPIO Input | Pull-Up | Sakelar Latching pemilih Auto / Manual |
+| **Btn Horiz Mundur**| `PB3` | GPIO Input | Pull-Up | Tombol manual pembuka pintu pembuangan |
+| **Btn Horiz Maju** | `PB4` | GPIO Input | Pull-Up | Tombol manual penutup pintu pembuangan |
+| **Btn Vert Turun** | `PB5` | GPIO Input | Pull-Up | Tombol manual silinder piston maju |
+| **Btn Vert Naik** | `PB6` | GPIO Input | Pull-Up | Tombol manual silinder piston mundur |
+| **Btn Auto Cycle** | `PB7` | GPIO Input | Pull-Up | Sakelar Latching pemilih Auto / Manual mode |
 
 ---
 
@@ -91,8 +91,8 @@ Firmware kontrol berbasis mikrokontroler **STM32F103** untuk mengendalikan **Mes
 | **Relay Auger Mundur**| `PB10` | Push-Pull Output | Menggerakkan motor auger arah sebaliknya |
 | **Relay Horiz Close** | `PB12` | Push-Pull Output | Katup Solenoid pintu pembuangan maju (tutup) |
 | **Relay Horiz Open** | `PB13` | Push-Pull Output | Katup Solenoid pintu pembuangan mundur (buka) |
-| **Relay Vert Down** | `PB14` | Push-Pull Output | Katup Solenoid silinder vertikal turun (press/eject) |
-| **Relay Vert Up** | `PB15` | Push-Pull Output | Katup Solenoid silinder vertikal naik (homing) |
+| **Relay Vert Down** | `PB14` | Push-Pull Output | Katup Solenoid silinder piston maju (press/eject) |
+| **Relay Vert Up** | `PB15` | Push-Pull Output | Katup Solenoid silinder piston mundur (homing) |
 
 ---
 
@@ -109,7 +109,7 @@ Firmware bekerja berdasarkan arsitektur **Finite State Machine (FSM)** yang diek
 [STATE_HORIZ_CLOSE_FIRST] ──► Menutup pintu pembuangan hingga PROX_CLOSE Aktif
        │
        ▼
-[STATE_HOMING] ─────────────► Silinder Vertikal Naik hingga PROX_HOMING Aktif
+[STATE_HOMING] ─────────────► Silinder piston mundur hingga PROX_HOMING Aktif
        │
        ▼
 [STATE_AUGER_FILLING] ──────► Motor Auger mengisi chip/material selama (Delay Material In)
@@ -119,7 +119,7 @@ Firmware bekerja berdasarkan arsitektur **Finite State Machine (FSM)** yang diek
        └───► [Siklus Akhir / Mode 1] ──► [STATE_VERT_PRESS_BY_GAUGE] (Press hingga Target Bar)
                                                       │
                                                       ▼
-[STATE_HORIZ_OPEN] ◄──────── [STATE_VERT_UP_BY_TIMER] (Naik sejenak lepas tekanan)
+[STATE_HORIZ_OPEN] ◄──────── [STATE_VERT_UP_BY_TIMER] (piston mundur sejenak lepas tekanan)
        │
        ▼
 [STATE_VERT_EJECT] ─────────► Piston mendorong briket keluar hingga terdeteksi 50 Bar
