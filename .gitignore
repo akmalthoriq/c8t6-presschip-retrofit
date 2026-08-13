@@ -1,0 +1,16 @@
+# Folder kompilasi & build
+Debug/
+Release/
+
+# Konfigurasi IDE lokal
+.settings/
+.vscode/
+
+# File binary / temporary hasil build
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+*.su
