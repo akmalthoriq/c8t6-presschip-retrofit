@@ -1,6 +1,6 @@
 ﻿# c8t6-presschip-retrofit
 
-# ⚙️ Automatic Hydraulic Pressing & Auger Feeder Controller
+# ⚙️ Automatic Presschip Machine Controller
 
 ![STM32 HAL](https://img.shields.io/badge/STM32-HAL_Driver-blue?style=for-the-badge&logo=stmicroelectronics)
 ![Architecture](https://img.shields.io/badge/Architecture-ARM_Cortex--M3-orange?style=for-the-badge)
